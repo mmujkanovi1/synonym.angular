@@ -15,37 +15,34 @@ import { SearchSynonymResult } from 'src/app/store/interfaces/synonymResult';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  searchSynonymForm:string="";
-searchInput:SearchItem = {
-  word: ""
-}
-isLoading$:Observable<boolean>
-error$: Observable<string | null>;
-synonyms$: Observable<string[]>;
-searchedSynonyms:SearchSynonymResult= {synonyms:[]};
-searchValue:string = '';
+  searchSynonymForm: string = "";
+  searchInput: SearchItem = {
+    word: ""
+  }
+  isLoading$: Observable<boolean>
+  error$: Observable<string | null>;
+  synonyms$: Observable<string[]>;
+  searchedSynonyms: SearchSynonymResult = { synonyms: [] };
+  searchValue: string = '';
 
 
-  constructor(private searchService:SearchService, private store: Store<AppStateInterface>
-   ) {
-     this.isLoading$=this.store.pipe(select(isLoadingSelector));
-     this.error$ = this.store.pipe(select(errorSelector));
-     this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
-    }
+  constructor(private searchService: SearchService, private store: Store<AppStateInterface>
+  ) {
+    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
+    this.error$ = this.store.pipe(select(errorSelector));
+    this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
+  }
 
   ngOnInit(): void {
   }
 
-  async searchSynonyms(input:string) {
-this.store.dispatch(SynonymActions.searchSynonyms({synonym:{word:input}}));
-this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
-this.error$ = this.store.pipe(select(errorSelector));
-this.searchSynonymForm=input;
+  async searchSynonyms(input: string) {
+    this.store.dispatch(SynonymActions.searchSynonyms({ synonym: { word: input } }));
+    this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
+    this.error$ = this.store.pipe(select(errorSelector));
+    this.searchSynonymForm = input;
   }
 
-  clearSearch() {
-    this.searchValue = '';
-  }
 
 
 

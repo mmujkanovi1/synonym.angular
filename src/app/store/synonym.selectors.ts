@@ -7,16 +7,16 @@ export const selectFeature = (state: AppStateInterface) => state;
 
 export const isLoadingSelector = createSelector(
   selectFeature,
-  (state) => {return state.synonyms.isLoading}
+  (state) => { return state.synonyms.isLoading }
 );
 
 export const searchSynonymSelector = createSelector(
-    selectFeature,
-    (state) => {
-        console.log(state.synonyms.data);
-        return state.synonyms.data.synonyms;
-    }
-  );
+  selectFeature,
+  (state) => {
+    console.log(state.synonyms.data);
+    return state.synonyms.data.synonyms;
+  }
+);
 
 export const errorSelector = createSelector(
   selectFeature,

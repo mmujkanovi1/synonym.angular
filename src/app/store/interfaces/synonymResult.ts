@@ -1,4 +1,4 @@
 
-export interface SearchSynonymResult{
-    synonyms:string[]
+export interface SearchSynonymResult {
+    synonyms: string[]
 }

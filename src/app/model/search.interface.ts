@@ -1,3 +1,3 @@
-export interface SearchItem{
-    word:string
+export interface SearchItem {
+    word: string
 }

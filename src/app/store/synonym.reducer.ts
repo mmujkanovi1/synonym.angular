@@ -5,7 +5,7 @@ import { SearchSynonymResult } from './interfaces/synonymResult';
 
 export const initialState: SearchStateInterface = {
   isLoading: true,
-  data: {synonyms:[]}/*{word:""}*/,
+  data: { synonyms: [] }/*{word:""}*/,
   error: null,
 };
 

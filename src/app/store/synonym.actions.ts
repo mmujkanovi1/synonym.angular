@@ -8,17 +8,17 @@ export const SEARCH_SYNONYM_FAILURE = '[searchModule] search for synonyms Fail A
 
 
 export const searchSynonyms = createAction(
-    SEARCH_SYNONYM,
-    props<{synonym: SearchItem}>()
+  SEARCH_SYNONYM,
+  props<{ synonym: SearchItem }>()
 );
 
 export const searchSynonymsSuccess = createAction(
-    SEARCH_SYNONYM_SUCCESS,
-  props<{ results: SearchSynonymResult}>()
+  SEARCH_SYNONYM_SUCCESS,
+  props<{ results: SearchSynonymResult }>()
 );
 
 export const searchSynonymsFail = createAction(
-    SEARCH_SYNONYM_FAILURE,
+  SEARCH_SYNONYM_FAILURE,
   props<{ error: string }>()
 );
 
