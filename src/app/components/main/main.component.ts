@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { SearchService } from 'src/app/services/searchService';
 import * as SynonymActions from '../../store/synonym.actions';
@@ -15,58 +15,38 @@ import { SearchSynonymResult } from 'src/app/store/interfaces/synonymResult';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  searchSynonymForm:string="";
 searchInput:SearchItem = {
   word: ""
 }
 isLoading$:Observable<boolean>
-//error$: Observable<string | null>;
+error$: Observable<string | null>;
 synonyms$: Observable<string[]>;
 searchedSynonyms:SearchSynonymResult= {synonyms:[]};
+searchValue:string = '';
 
 
   constructor(private searchService:SearchService, private store: Store<AppStateInterface>
    ) {
      this.isLoading$=this.store.pipe(select(isLoadingSelector));
-    // this.error$ = this.store.pipe(select(errorSelector));
+     this.error$ = this.store.pipe(select(errorSelector));
      this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
-   //  this.isLoading$=this.store.select(state=>state.isLoading);
     }
 
   ngOnInit(): void {
   }
 
   async searchSynonyms(input:string) {
-    console.log(input);
-    this.searchInput.word=input;
-this.store.dispatch(SynonymActions.searchSynonyms({word:{word:input}}));
-//this.isLoading$=this.store.pipe(select(isLoadingSelector));
-//this.isLoading$=this.store.select(state=>state.isLoading);
-//this.error$ = this.store.pipe(select(errorSelector));
+this.store.dispatch(SynonymActions.searchSynonyms({synonym:{word:input}}));
 this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
-console.log("searchSynonyms");
-//console.log(this.isLoading$)
-//console.log(this.error$);
-//this.synonyms$.forEach(data=>{
-//console.log(data);
-this.store.subscribe(data=>{
-       this.searchedSynonyms = data.synonyms.data;
-       console.log("Searched synonyms: " +this.searchedSynonyms.synonyms);
-})
-
-this.store.subscribe(data=>{
- // console.log(data.synonyms);
-  
-});
-this.isLoading$.subscribe(data=>{
-  console.log(data);
-})
-//console.log("Loaded selector: "+this.isLoading$.);
-console.log("Searched synonyms: " + this.searchedSynonyms.synonyms);
-
-
-
-
+this.error$ = this.store.pipe(select(errorSelector));
+this.searchSynonymForm=input;
   }
+
+  clearSearch() {
+    this.searchValue = '';
+  }
+
 
 
 }

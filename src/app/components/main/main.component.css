@@ -31,10 +31,10 @@
     border: 1px solid grey;
 }
 .synonymListDiv{
-    width:70%;
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 50px;
+    width:60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 100px;
     text-align: center;
 }
 .synonymButtons{
@@ -42,6 +42,10 @@
     margin-left: 2px;
     margin-top: 2px;
     margin-bottom: 2px;
+}
+
+.synonymTitle{
+font-size: 1.5em;
 }
 
 @media screen and (max-width: 800px) {
@@ -53,6 +57,11 @@
     .textInputField{
         height: 20%;
     }
+    .synonymListDiv{
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;  
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -60,5 +69,10 @@
         width: 80%;
         margin-left: 10%;
         margin-right: 10%;
+    }
+    .synonymListDiv{
+        width: 100%;
+        margin-left: 0%;
+        margin-right: 0%;  
     }
 }

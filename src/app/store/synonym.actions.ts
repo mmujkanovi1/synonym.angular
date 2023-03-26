@@ -9,7 +9,7 @@ export const SEARCH_SYNONYM_FAILURE = '[searchModule] search for synonyms Fail A
 
 export const searchSynonyms = createAction(
     SEARCH_SYNONYM,
-    props<{word: SearchItem}>()
+    props<{synonym: SearchItem}>()
 );
 
 export const searchSynonymsSuccess = createAction(

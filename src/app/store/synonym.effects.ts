@@ -17,7 +17,7 @@ searchSynonyms$ = createEffect(() => {
 return this.actions$.pipe(
     ofType(SynonymActions.searchSynonyms),
     mergeMap((action)=>{
-    return this.searchService.getSynonyms(action.word).pipe(
+    return this.searchService.getSynonyms(action.synonym).pipe(
         map((data:any) => {
             const SynonymResult = {data};
              console.log(data);

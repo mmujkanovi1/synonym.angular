@@ -1,7 +1,7 @@
    <div class="formClass">
    <mat-form-field class="searchForm">
         <mat-label style="margin-left:auto;margin-right:auto">    Search for synonyms</mat-label>
-        <input matInput  #search/>
+        <input id="searchInput" matInput  #search value="{{searchSynonymForm}}"/>
         <mat-icon matPrefix (click)="searchSynonyms(search.value)">search</mat-icon>
       </mat-form-field>
     <p class="addWordsLabel">Add a word and it's synonym</p>
@@ -20,8 +20,8 @@
       <button class="submitButton" mat-raised-button>Submit</button>
   
     </div>
-    <div *ngIf="isLoading$ | async">Loading...</div>
     <div class="synonymListDiv" >
-      <button class="synonymButtons" *ngFor="let synonym of synonyms$ | async" (click)="searchSynonyms(synonym)" mat-flat-button color="primary">{{ synonym }}</button>
+      <p class="synonymTitle" *ngIf="!(isLoading$ | async)">Synonyms for "{{searchSynonymForm}}"</p>
+      <button class="synonymButtons" *ngFor="let synonym of synonyms$ | async" (click)="searchSynonyms(synonym);" mat-flat-button color="primary">{{ synonym }}</button>
       
     </div>
