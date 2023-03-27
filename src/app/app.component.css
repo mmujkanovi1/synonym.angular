@@ -1,3 +1,6 @@
+
+@import '~ngx-toastr/toastr';
+
 .menuButtons{
     margin-right: 5%;
     margin-left: auto;

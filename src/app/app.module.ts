@@ -20,6 +20,7 @@ import { reducers } from './store/synonym.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchService } from './services/searchService';
 import { SearchEffects } from './store/synonym.effects';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { SearchEffects } from './store/synonym.effects';
     }),
     StoreModule.forFeature('synonyms', reducers),
     EffectsModule.forFeature([SearchEffects]),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [SearchService],
   bootstrap: [AppComponent]

@@ -32,5 +32,28 @@ export class SearchEffects {
             )
         )
     });
+
+    
+  $addSynonym = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(SynonymActions.addSynonymAction),
+        mergeMap((action) => { console.log(action.twoWords);
+            return this.searchService.addSynonym(action.twoWords).pipe(
+                map((data: any) => {
+                    console.log("data in addSynonym")
+                    console.log(data);
+                    
+                   // this.searchSynonymResult = data;
+                   // console.log(this.searchSynonymResult);
+
+                    return SynonymActions.addSynonymSuccess({ resultMessage: "data.responseMessage"});
+                }
+                )
+            )
+        }
+        )
+    )
+});
+
 }
 

@@ -76,3 +76,6 @@ font-size: 1.5em;
         margin-right: 0%;  
     }
 }
+#toast-container > .toast {
+    width: 1200px; /* width: 100% */
+  }
