@@ -75,13 +75,6 @@ console.log("drugi if");
 
   }
 
-   handleKeyPress(e:any, searchValue:string){
-     console.log("dosao ovdjee");
-    var key=e.keyCode || e.which;
-     if (key==13){
-      this.searchSynonyms(searchValue);
-     }
-   }
 
 
 }

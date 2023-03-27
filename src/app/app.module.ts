@@ -21,11 +21,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchService } from './services/searchService';
 import { SearchEffects } from './store/synonym.effects';
 import { ToastrModule } from 'ngx-toastr';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    AboutComponent
 
   ],
   imports: [
