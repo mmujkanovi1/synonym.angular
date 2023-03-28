@@ -11,7 +11,7 @@ Synonym.angular is a frontend for system that works as a synonym search tool. Ba
 ## Implementation
 When application is opened it leads us to a home page as we can see on the photo below:
 
-<img src="https://github.com/mmujkanovi1/synonym.angular/blob/develop/src/assets/images/basicHomePage.png">
+<img src="https://github.com/mmujkanovi1/synonym.angular/blob/develop/src/assets/images/basicHomePage.png" widht="750" height="550">
 
 In this page we have two forms:
  - one for searching for synonyms,
