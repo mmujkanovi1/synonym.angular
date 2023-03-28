@@ -1,0 +1,27 @@
+.textBox{
+    width:50%;
+   margin-left: 25%;
+   margin-right: 25%;
+   margin-top:30px;
+   font-size: 15px;
+}
+
+.ul.list {
+    list-style-type: square;
+  }
+
+@media screen and (max-width: 800px) {
+    .textBox{
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .textBox{
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
