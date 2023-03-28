@@ -11,6 +11,8 @@ Synonym.angular is a frontend for system that works as a synonym search tool. Ba
 ## Implementation
 When application is opened it leads us to a home page as we can see on the photo below:
 
+<img src="https://github.com/mmujkanovi1/synonym.angular/blob/develop/src/assets/images/basicHomePage.png">
+
 In this page we have two forms:
  - one for searching for synonyms,
  - one for adding synonyms.
@@ -21,6 +23,8 @@ In this page we have two forms:
 
 ### Searching synonyms
 In the search input you can type a word to search for its synonyms. The result appears after pressing the enter key on your keyboard as you can see from the following example:
+<img src="https://github.com/mmujkanovi1/synonym.angular/blob/develop/src/assets/images/searchTriggered_new.png">
+
 
 Synonyms are listed as buttons and if you click on any of them, then synonyms for the clicked word will apear in a field, and the clicked word will show in the search input section.
 
