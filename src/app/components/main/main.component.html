@@ -2,26 +2,26 @@
    <mat-form-field (keydown.enter)="searchSynonyms(search.value)" class="searchForm">
         <mat-label style="margin-left:auto;margin-right:auto">    Search for synonyms</mat-label>
         <input id="searchInput" matInput  #search value="{{searchSynonymForm}}"/>
-        <mat-icon matPrefix (click)="searchSynonyms(search.value)">search</mat-icon>
+        <mat-icon matPrefix class="pointer" (click)="searchSynonyms(search.value)">search</mat-icon>
       </mat-form-field>
-    <p class="addWordsLabel">Add a word and it's synonym</p>
+    <p class="addWordsLabel">Add synonym for word</p>
     <div class="wordInputForm">
         <mat-form-field class="textInputField" appearance="outline">
-            <mat-label>Enter a word</mat-label>
+            <mat-label>word</mat-label>
             <input matInput #word1 placeholder="Word">
           </mat-form-field>
           <label class="labelBetweenInputs">--></label>
            <mat-form-field class="textInputField" appearance="outline" >
-            <mat-label>And it's synonym</mat-label>
+            <mat-label>synonym</mat-label>
             <input matInput #word2 placeholder="Synonym">
             
           </mat-form-field>
       </div>
-      <button class="submitButton" mat-raised-button (click)="addSynonym(word1.value, word2.value)">Submit</button>
+      <button class="submitButton" mat-raised-button (click)="addSynonym(word1.value, word2.value);searchSynonyms(search.value)">Submit</button>
   
     </div>
     <div class="synonymListDiv" >
-      <p class="synonymTitle" *ngIf="!(isLoading$ | async)">Synonyms for "{{searchSynonymForm}}"</p>
+      <p class="synonymTitle" *ngIf="!(isLoading$ | async)">Synonyms for "{{searchSynonymForm}}":</p>
       <button class="synonymButtons" *ngFor="let synonym of synonyms$ | async" (click)="searchSynonyms(synonym);" mat-flat-button color="primary">{{ synonym }}</button>
       
     </div>

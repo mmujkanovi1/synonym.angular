@@ -2,6 +2,7 @@
     width:40%;
    margin-left: 30%;
    margin-right: 30%;
+   margin-top:30px;
 }
 .addWordsLabel{
    margin-top: 20px;
@@ -76,6 +77,6 @@ font-size: 1.5em;
         margin-right: 0%;  
     }
 }
-#toast-container > .toast {
-    width: 1200px; /* width: 100% */
+  .pointer{
+    cursor: pointer;
   }

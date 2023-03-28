@@ -28,8 +28,6 @@ export class MainComponent implements OnInit {
   isLoading$: Observable<boolean>
   error$: Observable<string | null>;
   synonyms$: Observable<string[]>;
-  searchedSynonyms: SearchSynonymResult = { synonyms: [] };
-  searchValue: string = '';
 
 
   constructor(private searchService: SearchService, private store: Store<AppStateInterface>,
@@ -52,6 +50,7 @@ export class MainComponent implements OnInit {
   }
 
   addSynonym(word1: string, word2: string) {
+    console.log(word1+", "+word2)
     this.addSynonymModel.word = word1;
     this.addSynonymModel.word2 = word2;
     
@@ -66,9 +65,19 @@ console.log("drugi if");
     }
     else {
       console.log("treci if");
-      this.toastr.success('Synonyms successufully added');
+     // this.toastr.success('Synonyms successufully added');
    // this.searchService.addSynonym(this.addSynonymModel);
-   this.store.dispatch(SynonymActions.addSynonymAction({twoWords:{word:"pet",word2:"sest"}}));
+  // this.store.dispatch(SynonymActions.addSynonymAction({twoWords:this.addSynonymModel}));
+  this.searchService.addSynonymToComponent(this.addSynonymModel).subscribe(data=>{
+    console.log(data);
+    console.log(data.responseMessage);
+    if(data.responseMessage=="Synonym added succesufully"){
+    this.toastr.success(data.responseMessage);
+  }
+  else{
+    this.toastr.warning(data.responseMessage);
+  }
+  })
     }
     console.log(this.addSynonymModel.word + ", " + this.addSynonymModel.word2);
    // this.searchService.addSynonym(this.addSynonymModel);

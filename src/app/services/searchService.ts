@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { SearchItem } from '../model/search.interface';
@@ -18,6 +18,11 @@ export class SearchService {
     addSynonym(addSynonym: AddSynonymModel): Observable<Object> {
         return this.http.post("http://localhost:8080/synonym/add", addSynonym);
     }
+
+    addSynonymToComponent(addSynonym: AddSynonymModel) {
+        return this.http.post<any>("http://localhost:8080/synonym/add", addSynonym)
+    }
+
 
 }
 
