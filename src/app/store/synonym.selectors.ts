@@ -1,7 +1,5 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 import { AppStateInterface } from './state/appState.interface';
-import { SearchStateInterface } from './interfaces/searchState.interface';
-import { SearchSynonymResult } from './interfaces/synonymResult';
 
 export const selectFeature = (state: AppStateInterface) => state;
 

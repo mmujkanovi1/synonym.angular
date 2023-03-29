@@ -1,14 +1,12 @@
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { SearchService } from 'src/app/services/searchService';
+import { SynonymService } from 'src/app/services/synonymService';
 import * as SynonymActions from '../../store/synonym.actions';
 import { SearchItem } from 'src/app/model/search.interface';
 import { Observable } from 'rxjs';
 import { errorSelector, isLoadingSelector, searchSynonymSelector } from 'src/app/store/synonym.selectors';
 import { AppStateInterface } from 'src/app/store/state/appState.interface';
-import { SearchStateInterface } from 'src/app/store/interfaces/searchState.interface';
-import { SearchSynonymResult } from 'src/app/store/interfaces/synonymResult';
-import { AddSynonymModel } from '../../model/addSynonym';
+import { AddSynonymModel } from '../../model/addSynonym.interface';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  searchSynonymForm: string = "";
+  searchSynonymForm!: string;
   addSynonymModel: AddSynonymModel = {
     word: "",
     word2: ""
@@ -30,8 +28,8 @@ export class MainComponent implements OnInit {
   synonyms$: Observable<string[]>;
 
 
-  constructor(private searchService: SearchService, private store: Store<AppStateInterface>,
-     private toastr:ToastrService
+  constructor(private synonymService: SynonymService, private store: Store<AppStateInterface>,
+    private toastr: ToastrService
   ) {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.error$ = this.store.pipe(select(errorSelector));
@@ -41,7 +39,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async searchSynonyms(input: string) {
+  searchSynonyms(input: string) {
     this.searchInput.word = input;
     this.store.dispatch(SynonymActions.searchSynonyms({ synonym: { word: input } }));
     this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
@@ -49,43 +47,31 @@ export class MainComponent implements OnInit {
     this.searchSynonymForm = input;
   }
 
-  addSynonym(word1: string, word2: string) {
-    console.log(word1+", "+word2)
-    this.addSynonymModel.word = word1;
-    this.addSynonymModel.word2 = word2;
-    
-    if(word1=="" || word2==""){
+
+  async addSynonym(input1: string, input2: string, searchInput: string) {
+    this.addSynonymModel.word = input1;
+    this.addSynonymModel.word2 = input2;
+    if (input1 == "" || input2 == "") {
       this.toastr.error('You cannot set empty input. Try again!!!');
-console.log("prvi if");
     }
 
-    else if (word1 == word2) {
+    else if (input1 == input2) {
       this.toastr.warning('Word and its synonym cannot be the same');
-console.log("drugi if");
     }
     else {
-      console.log("treci if");
-     // this.toastr.success('Synonyms successufully added');
-   // this.searchService.addSynonym(this.addSynonymModel);
-  // this.store.dispatch(SynonymActions.addSynonymAction({twoWords:this.addSynonymModel}));
-  this.searchService.addSynonymToComponent(this.addSynonymModel).subscribe(data=>{
-    console.log(data);
-    console.log(data.responseMessage);
-    if(data.responseMessage=="Synonym added succesufully"){
-    this.toastr.success(data.responseMessage);
-  }
-  else{
-    this.toastr.warning(data.responseMessage);
-  }
-  })
+      this.synonymService.addSynonym(this.addSynonymModel).subscribe(data => {
+        if (data.responseMessage == "Synonym added succesufully") {
+          this.toastr.success(data.responseMessage);
+          if (searchInput != "") {
+            this.searchSynonyms(searchInput);
+          }
+        }
+        else {
+          this.toastr.warning(data.responseMessage);
+        }
+      })
     }
-    console.log(this.addSynonymModel.word + ", " + this.addSynonymModel.word2);
-   // this.searchService.addSynonym(this.addSynonymModel);
-
   }
-
-
-
 }
 
 

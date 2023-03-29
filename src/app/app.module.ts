@@ -15,10 +15,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
-//import { SearchEffects } from './store/effects';
 import { reducers } from './store/synonym.reducer';
 import { HttpClientModule } from '@angular/common/http';
-import { SearchService } from './services/searchService';
+import { SynonymService } from './services/synonymService';
 import { SearchEffects } from './store/synonym.effects';
 import { ToastrModule } from 'ngx-toastr';
 import { AboutComponent } from './components/about/about.component';
@@ -53,7 +52,7 @@ import { AboutComponent } from './components/about/about.component';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [SearchService],
+  providers: [SynonymService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
