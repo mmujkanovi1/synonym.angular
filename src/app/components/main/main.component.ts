@@ -40,11 +40,15 @@ export class MainComponent implements OnInit {
   }
 
   searchSynonyms(input: string) {
-    this.searchInput.word = input;
-    this.store.dispatch(SynonymActions.searchSynonyms({ synonym: { word: input } }));
-    this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
-    this.error$ = this.store.pipe(select(errorSelector));
-    this.searchSynonymForm = input;
+
+    if (input != "") {
+      this.searchInput.word = input;
+      this.store.dispatch(SynonymActions.searchSynonyms({ synonym: { word: input } }));
+      this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
+      this.error$ = this.store.pipe(select(errorSelector));
+      this.searchSynonymForm = input;
+    }
+
   }
 
 
@@ -60,7 +64,7 @@ export class MainComponent implements OnInit {
     }
     else {
       this.synonymService.addSynonym(this.addSynonymModel).subscribe(data => {
-        if (data.responseMessage == "Synonym added succesufully") {
+        if (data.responseMessage == "Synonym added successfully") {
           this.toastr.success(data.responseMessage);
           if (searchInput != "") {
             this.searchSynonyms(searchInput);
