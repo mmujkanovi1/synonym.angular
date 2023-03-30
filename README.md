@@ -22,7 +22,7 @@ In this page we have two forms:
  For this application I used the NGRX library (state of the whole application is located in one container and can be changed only with reducers) in order for application to be maintanable, reusable, readable and user-frendly.
 
 ### Searching synonyms
-In the search input you can type a word to search for its synonyms. The result appears after pressing the enter key on your keyboard as you can see from the following example:
+In the search input, you can type a word to search for its synonyms. The result appears after pressing the enter key on your keyboard or pressing the search icon, as you can see from the following example:
 <img src="https://github.com/mmujkanovi1/synonym.angular/blob/develop/src/assets/images/searchTriggered_new.png">
 
 
