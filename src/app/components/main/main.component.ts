@@ -42,19 +42,18 @@ export class MainComponent implements OnInit {
   searchSynonyms(input: string) {
 
     if (input != "") {
-      this.searchInput.word = input;
-      this.store.dispatch(SynonymActions.searchSynonyms({ synonym: { word: input } }));
+      this.store.dispatch(SynonymActions.searchSynonyms({ synonym: { word: input.trim() } }));
       this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
       this.error$ = this.store.pipe(select(errorSelector));
-      this.searchSynonymForm = input;
+      this.searchSynonymForm = input.trim();
     }
 
   }
 
 
   async addSynonym(input1: string, input2: string, searchInput: string) {
-    this.addSynonymModel.word = input1;
-    this.addSynonymModel.word2 = input2;
+    this.addSynonymModel.word = input1.trim();
+    this.addSynonymModel.word2 = input2.trim();
     if (input1 == "" || input2 == "") {
       this.toastr.error('You cannot set empty input. Try again!!!');
     }
