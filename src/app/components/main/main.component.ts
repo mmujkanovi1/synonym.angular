@@ -41,7 +41,7 @@ export class MainComponent implements OnInit {
 
   searchSynonyms(input: string) {
 
-    if (input != "") {
+    if (input.trim() != "") {
       this.store.dispatch(SynonymActions.searchSynonyms({ synonym: { word: input.trim() } }));
       this.synonyms$ = this.store.pipe(select(searchSynonymSelector));
       this.error$ = this.store.pipe(select(errorSelector));
