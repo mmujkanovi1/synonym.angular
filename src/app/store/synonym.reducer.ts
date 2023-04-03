@@ -12,7 +12,7 @@ export const initialState: SearchStateInterface = {
 
 export const reducers = createReducer(
   initialState,
-  on(SynonymActions.searchSynonyms, (state) => ({ ...state, isLoading: true })),
+  on(SynonymActions.searchSynonyms, (state) => ({ ...state, isLoading: false })),
   on(SynonymActions.searchSynonymsSuccess, (state, action) => ({
     ...state,
     isLoading: false,
